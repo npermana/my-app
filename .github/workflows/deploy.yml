@@ -33,20 +33,20 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-app:${{ github.sha }} .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-app:${{ github.sha }}
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
 
-      - name: Update values.yaml
-        run: |
-          cd myapp
-          sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ github.sha }}'|' values.yaml 
-          git config --global user.name 'npermana'
-          git config --global user.email 'npermana@gmail.com'
-          git add values.yaml
-          git commit -m "Update values.yaml"
-          git push
+#      - name: Update values.yaml
+#        run: |
+#          cd myapp
+#          sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ github.sha }}'|' values.yaml
+#          git config --global user.name 'npermana'
+#          git config --global user.email 'npermana@gmail.com'
+#          git add values.yaml
+#          git commit -m "Update values.yaml"
+#          git push
 #      - name: Set up Kubeconfig for Minikube
 #        run: |
 #          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
