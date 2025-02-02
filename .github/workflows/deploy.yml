@@ -34,11 +34,11 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ${{ secrets.DOCKER_USERNAME }}/my-app:latest
 
-      - name: Set up Kubeconfig for Minikube
-        run: |
-          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
-
-      - name: Apply Kubernetes Manifests (Argo CD Sync)
-        run: |
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
+#      - name: Set up Kubeconfig for Minikube
+#        run: |
+#          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+#
+#      - name: Apply Kubernetes Manifests (Argo CD Sync)
+#        run: |
+#          kubectl apply -f k8s/deployment.yaml
+#          kubectl apply -f k8s/service.yaml
